@@ -50,7 +50,7 @@ jobs:
 
             3. Investigate the code. Read CLAUDE.md first for the architecture, then look at the relevant parts of game.js, index.html and style.css to find where the problem (or the requested feature) lives. Do NOT modify any repository files.
 
-            4. Write the diagnosis, in English, to the file `triage-comment.md` (outside of git tracking is fine, it is only a temp file) using exactly this structure. The first line must be the marker comment:
+            4. Write the diagnosis, in English, to the file `triage-comment.md` (outside of git tracking is fine, it is only a temp file) using exactly this structure. The comment must be valid GitHub Flavored Markdown that GitHub renders correctly (headings, bold, inline code with backticks, fenced code blocks with a language tag, numbered and bulleted lists, blank lines between blocks). Do not use raw HTML other than the marker comment. The first line must be the marker comment:
 
                <!-- claude-issue-triage -->
                ## Claude triage
