@@ -150,3 +150,13 @@ kbd {
 #restart-btn:hover {
   background: #9bbdff;
 }
+
+/* ---- Skins ---- */
+#skin-select {
+  background: #0f0f17;
+  color: #7aa2f7;
+  border: 1px solid #555570;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font: inherit;
+}
