@@ -12,9 +12,9 @@ Open `index.html` in a browser, or serve the directory (e.g. `python3 -m http.se
 
 ## Architecture
 
-Three files, loaded directly by `index.html` (`game.js` is a classic script, not a module):
+Three core files (plus `skins.js`, below), loaded directly by `index.html` (`game.js` is a classic script, not a module):
 
-- `index.html` defines the DOM that `game.js` looks up by id at load time (`board`, `next-canvas`, `score`, `lines`, `level`, `overlay`, `overlay-title`, `overlay-score`, `restart-btn`). Renaming an id requires updating the lookups at the top of `game.js`.
+- `index.html` defines the DOM that `game.js` looks up by id at load time (`board`, `next-canvas`, `score`, `lines`, `level`, `overlay`, `overlay-title`, `overlay-score`, `restart-btn`, `skin-select`). Renaming an id requires updating the lookups at the top of `game.js`.
 - `style.css` handles layout and the overlay's `hidden` class.
 - `game.js` holds all game logic as top-level functions sharing module-level mutable state (`board`, `current`, `next`, `score`, `lines`, `level`, `paused`, `gameOver`, ...), all reset in `init()`.
 
@@ -26,3 +26,5 @@ Game flow in `game.js`:
 - The board is a `ROWS x COLS` matrix of numbers. 0 is empty, and 1-7 index both `COLORS` and `PIECES`, so a piece's type is also its color.
 - Rotation (`rotateCW`) is a matrix transpose with only horizontal wall kicks (`tryRotate`). `collide()` is the single collision check used by movement, rotation, ghost piece and spawn.
 - Scoring: `LINE_SCORES[cleared] * level`, plus 1 point per soft-drop cell and 2 per hard-drop cell. Level is `floor(lines / 10) + 1`, and `dropInterval = max(100, 1000 - (level - 1) * 90)`.
+
+- `skins.js` (loaded after `game.js`) defines `SKINS` (`retro`, `neon`, `pastel`, `pixel`), each with `colors`, `bg`, `grid` and `drawBlock`. `game.js`'s `drawBlock`/`drawGrid` delegate to the global `activeSkin` (guarded with `typeof`, since `game.js` runs `init()` before `skins.js` loads). `applySkin()` sets the canvas CSS background and redraws; the choice persists in `localStorage` key `tetris.skin` and the `#skin-select` is blurred after change so game keys keep working.
