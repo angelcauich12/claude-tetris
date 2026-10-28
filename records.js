@@ -16,7 +16,9 @@ const overlayRecords = document.getElementById('overlay-records');
 function loadRecords() {
   try {
     const list = JSON.parse(localStorage.getItem(REC_KEY));
-    return Array.isArray(list) ? list.slice(0, REC_MAX) : [];
+    return Array.isArray(list)
+      ? list.filter(r => r && typeof r.score === 'number').slice(0, REC_MAX)
+      : [];
   } catch (e) { return []; }
 }
 
