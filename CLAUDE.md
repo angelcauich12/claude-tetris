@@ -12,9 +12,9 @@ Open `index.html` in a browser, or serve the directory (e.g. `python3 -m http.se
 
 ## Architecture
 
-Three files, loaded directly by `index.html` (`game.js` is a classic script, not a module):
+Three core files (plus `skins.js`, below), loaded directly by `index.html` (`game.js` is a classic script, not a module):
 
-- `index.html` defines the DOM that `game.js` looks up by id at load time (`board`, `next-canvas`, `score`, `lines`, `level`, `overlay`, `overlay-title`, `overlay-score`, `restart-btn`). Renaming an id requires updating the lookups at the top of `game.js`.
+- `index.html` defines the DOM that `game.js` looks up by id at load time (`board`, `next-canvas`, `score`, `lines`, `level`, `overlay`, `overlay-title`, `overlay-score`, `restart-btn`, `skin-select`). Renaming an id requires updating the lookups at the top of `game.js`.
 - `style.css` handles layout and the overlay's `hidden` class.
 - `game.js` holds all game logic as top-level functions sharing module-level mutable state (`board`, `current`, `next`, `score`, `lines`, `level`, `paused`, `gameOver`, ...), all reset in `init()`.
 
