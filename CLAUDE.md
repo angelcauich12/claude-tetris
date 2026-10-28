@@ -26,3 +26,8 @@ Game flow in `game.js`:
 - The board is a `ROWS x COLS` matrix of numbers. 0 is empty, and 1-7 index both `COLORS` and `PIECES`, so a piece's type is also its color.
 - Rotation (`rotateCW`) is a matrix transpose with only horizontal wall kicks (`tryRotate`). `collide()` is the single collision check used by movement, rotation, ghost piece and spawn.
 - Scoring: `LINE_SCORES[cleared] * level`, plus 1 point per soft-drop cell and 2 per hard-drop cell. Level is `floor(lines / 10) + 1`, and `dropInterval = max(100, 1000 - (level - 1) * 90)`.
+
+Records (`records.js`, classic script loaded after `game.js`):
+- Keeps the top 5 (`{name, score, lines, combo, date}`) in `localStorage` `tetris.records`, plus `tetris.bestCombo` and `tetris.maxLines`; every access is in try/catch.
+- `game.js` no longer calls `init()` at load: `records.js` shows `#start-screen` (top 5, bests, Jugar button) and sets `gameOver = true` so keys are ignored until Jugar calls `init()`.
+- Hooks in `game.js`: `clearLines()` maintains `combo`/`maxCombo` (consecutive locks that clear lines), `endGame()` calls `showGameOverRecords()` (fills `#overlay-records`, name input if top 5), `init()` calls `recordsReset()`. The keydown listener ignores events from `INPUT` elements.
