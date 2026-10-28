@@ -150,3 +150,101 @@ kbd {
 #restart-btn:hover {
   background: #9bbdff;
 }
+
+/* ---- Menú de pausa ---- */
+.pause-menu {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 20, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 4px;
+}
+
+.pause-menu.hidden {
+  display: none;
+}
+
+.pause-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 230px;
+}
+
+.pause-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #7aa2f7;
+  margin-bottom: 8px;
+}
+
+.pm-item {
+  background: #1a1a2a;
+  color: #ddd;
+  border: 1px solid #3a3a5a;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pm-item:hover,
+.pm-item.selected {
+  border-color: #7aa2f7;
+  background: #22223a;
+  color: #fff;
+}
+
+.pm-level {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+}
+
+.pm-stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #7aa2f7;
+}
+
+.pm-step {
+  background: #7aa2f7;
+  color: #0f0f17;
+  border: none;
+  border-radius: 4px;
+  width: 22px;
+  height: 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pm-controls {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 14px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.pm-controls.hidden {
+  display: none;
+}
+
+.pm-hint {
+  text-align: center;
+  font-size: 11px;
+  color: #555570;
+}

@@ -26,3 +26,8 @@ Game flow in `game.js`:
 - The board is a `ROWS x COLS` matrix of numbers. 0 is empty, and 1-7 index both `COLORS` and `PIECES`, so a piece's type is also its color.
 - Rotation (`rotateCW`) is a matrix transpose with only horizontal wall kicks (`tryRotate`). `collide()` is the single collision check used by movement, rotation, ghost piece and spawn.
 - Scoring: `LINE_SCORES[cleared] * level`, plus 1 point per soft-drop cell and 2 per hard-drop cell. Level is `floor(lines / 10) + 1`, and `dropInterval = max(100, 1000 - (level - 1) * 90)`.
+
+Pause menu (`pause-menu.js`, classic script loaded after `game.js`):
+- Owns the dedicated `#pause-menu` DOM (separate from `#overlay`, which is game over only). `P`/`Escape` -> `togglePause()` -> `togglePauseMenu()`, which sets `paused`, cancels the rAF loop and, on resume, resets `lastTime` and restarts `loop`.
+- Own keydown listener (Up/Down/Enter/Left/Right) only acts while the menu is open; `game.js` ignores game keys while `paused`.
+- "Nivel inicial" (1-10) is persisted in `localStorage` `tetris.startLevel` and read by `game.js` into `startLevel`. `init()` copies it to `baseLevel`; `clearLines()` uses `max(baseLevel, floor(lines/10)+1)`, so changing the selector affects only the next game. `init()` calls `hidePauseMenu()`.
